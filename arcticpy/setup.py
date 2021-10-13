@@ -32,11 +32,29 @@ for root, dirs, files in os.walk(dir_wrapper, topdown=False):
             print("rm", file)
             os.remove(file)
 
+with open("README.md", "r") as f:
+    long_description = f.read()
+
 # Build
 os.environ["CC"] = "g++"
 setup(
     name="arcticpy",
-    version="0.1",
+    version="2.0",
+    description="AlgoRithm for Charge Transfer Inefficiency Correction",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    author="Jacob Kegerreis, Richard Massey, James Nightingale",
+    author_email="jacob.kegerreis@durham.ac.uk",
+    url="https://github.com/jkeger/arctic",
+    license="GNU GPLv3+",
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    ],
+    python_requires=">=3",
+    keywords=["charge transfer inefficiency correction"],
+    install_requires=["numpy"],
     packages=find_packages("src"),
     package_dir={"": "src"},
     ext_modules=cythonize(
