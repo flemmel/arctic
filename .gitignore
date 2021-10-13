@@ -8,6 +8,7 @@ arcticpy/src/wrapper.cpp
 __pycache__/
 build/
 gsl/
+dist/
 
 *.fits
 *test*.*

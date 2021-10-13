@@ -7,13 +7,13 @@
 
 import os
 import numpy as np
-from distutils.core import setup
+from setuptools import setup, find_packages
 from distutils.extension import Extension
 from Cython.Build import cythonize
 
 # Directories
 dir_wrapper = os.path.dirname(os.path.realpath(__file__)) + "/"
-dir_src = dir_wrapper + "src/"
+dir_src = dir_wrapper + "src/arcticpy/"
 dir_arctic = os.path.abspath(os.path.join(dir_wrapper, os.pardir)) + "/"
 dir_include = dir_arctic + "include/"
 dir_lib = dir_arctic
@@ -35,6 +35,10 @@ for root, dirs, files in os.walk(dir_wrapper, topdown=False):
 # Build
 os.environ["CC"] = "g++"
 setup(
+    name="arcticpy",
+    version="0.1",
+    packages=find_packages("src"),
+    package_dir={"": "src"},
     ext_modules=cythonize(
         [
             Extension(
