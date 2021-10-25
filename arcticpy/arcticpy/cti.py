@@ -1,8 +1,8 @@
 import numpy as np
 import arcticpy.wrapper as w
-from arcticpy.src.ccd import CCDPhase, CCD
-from arcticpy.src.roe import ROE
-from arcticpy.src.traps import (
+from arcticpy.ccd import CCDPhase, CCD
+from arcticpy.roe import ROE
+from arcticpy.traps import (
     TrapInstantCapture,
     TrapSlowCapture,
     TrapInstantCaptureContinuum,
