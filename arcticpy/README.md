@@ -7,7 +7,7 @@
 * Build ArcticPy library and wheel file:
 ```bash
 $ cd arcticpy
-$ python setup.py build_ext --inplace
+$ pip install cython numpy
 $ python setup.py bdist_wheel
 ```
 * Install ArcticPy wrapper:
