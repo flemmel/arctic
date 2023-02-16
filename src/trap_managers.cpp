@@ -451,7 +451,7 @@ int TrapManagerBase::watermark_index_above_cloud(double cloud_fractional_volume)
          i_wmk < i_first_active_wmk + n_active_watermarks; i_wmk++) {
         // Total volume so far
         cumulative_volume += watermark_volumes[i_wmk];
-        print_v(0,"   %d, %d of %d watermark_fractional_volume %g\n",i_wmk,i_first_active_wmk,n_active_watermarks,watermark_volumes[i_wmk]);
+        print_v(1,"   %d, %d of %d watermark_fractional_volume %g\n",i_wmk,i_first_active_wmk,n_active_watermarks,watermark_volumes[i_wmk]);
 
         if (cumulative_volume > cloud_fractional_volume) return i_wmk;
     }
@@ -660,7 +660,7 @@ double TrapManagerInstantCapture::n_electrons_released_from_wmk_above_cloud(int 
 void TrapManagerInstantCapture::update_watermarks_capture(
     double cloud_fractional_volume, int i_wmk_above_cloud) {
 
-    print_v(0,"cloud_fractional_volume %g\n",cloud_fractional_volume);
+    print_v(1,"cloud_fractional_volume %g\n",cloud_fractional_volume);
 
     // First capture
     if (n_active_watermarks == 0) {
@@ -929,7 +929,7 @@ double TrapManagerInstantCapture::n_electrons_captured(double n_free_electrons) 
 
     int i_wmk_above_cloud = watermark_index_above_cloud(cloud_fractional_volume);
     
-    print_v(0, "i_wmk_above_cloud %d \n\n",i_wmk_above_cloud);
+    print_v(1, "i_wmk_above_cloud %d \n\n",i_wmk_above_cloud);
 
     // Each active watermark
     for (int i_wmk = i_first_active_wmk; i_wmk <= i_wmk_above_cloud; i_wmk++) {
@@ -962,7 +962,7 @@ double TrapManagerInstantCapture::n_electrons_captured(double n_free_electrons) 
                 frac_exposed_per_volume;
         }
 
-        print_v(0, " %d %g %g %g \n", i_wmk, volume_bottom,volume_top,volume_top-volume_bottom);
+        print_v(1, " %d %g %g %g \n", i_wmk, volume_bottom,volume_top,volume_top-volume_bottom);
 
         // Capture from the bottom to the top of the watermark
         n_captured += n_captured_this_wmk * (volume_top - volume_bottom);
@@ -1028,7 +1028,7 @@ double TrapManagerInstantCapture::n_electrons_released_and_captured(
     double n_captured = n_electrons_captured(n_free_electrons + n_released);
     print_v(2, "n_electrons_captured  %g \n", n_captured);
 
-    print_v(0, "n_free %g n_release %g n_captured %g \n", n_free_electrons,n_released,n_captured);
+    print_v(1, "n_free %g n_release %g n_captured %g \n", n_free_electrons,n_released,n_captured);
 
     return n_released - n_captured;
 }
